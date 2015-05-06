@@ -1,12 +1,12 @@
 # Autocomplete
 
-_A textual autocomplete class written in Swift_
+_A simple autocomplete class written in Swift_
 
 ## What can it do?
 
 - Return a list of strings based on textual user input
 - Match strings by prefix, range of text or custom closure
-- Load a lookup list from a file or URL
+- Load a lookup list from a file or a URL
 - Keep a list of most recently selected matches
 
 ## Why should I use it?
@@ -28,7 +28,7 @@ list = autocompleteManager.updateListMatchPrefix(autocompleteField.text)
 
 ## An example application
 
-A simple application is include which shows how to perform prefix and range of text matches to look up cities or US presidents. It also shows how to maintain a most recents list.
+A simple application, which is included, shows how to perform prefix and range of text matches to look up world cities or US presidents. It also shows how to maintain a most recents list.
 
 
 ## Limitations
