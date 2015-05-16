@@ -143,6 +143,10 @@ class PresidentsViewController: UITableViewController, UITableViewDelegate, UITe
             
             // Use the built in filtering to match any contained text
             list = autocompleteManager.updateListMatchAny(autocompleteField.text)
+
+            // Use a closure to pass a filter that must match the prefix or the suffix
+//            list = autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(autocompleteField.text.lowercaseString) || $0.lowercaseString.hasSuffix(autocompleteField.text.lowercaseString)})
+
         }
         self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
     }
