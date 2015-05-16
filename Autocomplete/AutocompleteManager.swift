@@ -31,6 +31,14 @@ public class AutocompleteManager: NSObject, NSURLConnectionDataDelegate {
         return autocompleteList
     }
     
+    /// Returns an array of strings that ends with the provided text
+    public final func updateListMatchSuffix(autocompleteText: String) -> Array<String> {
+        autocompleteList = dataList.filter { $0.lowercaseString.hasSuffix(autocompleteText.lowercaseString) }
+        autocompleteList.sort { $0 < $1 }
+        
+        return autocompleteList
+    }
+
     /// Returns an array of strings that contains the provided text
     public final func updateListMatchAny(autocompleteText: String) -> Array<String> {
         autocompleteList = Array<String>()
