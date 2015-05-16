@@ -15,14 +15,52 @@ _A simple autocomplete class written in Swift_
 - Fast
 - A single class
 
-## Sample method call
+## Sample prefix match method - updates autocomplete list of table view
 
-### `AutocompleteManager.swift`
 
 ```Swift
 
-// Use the built in filtering to match starting text
-list = autocompleteManager.updateListMatchPrefix(autocompleteField.text)
+@IBAction func editingDidChange(sender: UITextField) {
+    let autocompleteField: UITextField = sender
+    if !autocompleteField.text.isEmpty {
+
+        // Use the built in filtering to match starting text
+        list = autocompleteManager.updateListMatchPrefix(autocompleteField.text)
+    }
+    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+}
+
+```
+
+## Sample range match method - updates autocomplete list of table view
+
+```Swift
+
+@IBAction func editingDidChange(sender: UITextField) {
+    let autocompleteField: UITextField = sender
+    if !autocompleteField.text.isEmpty {
+
+        // Use the built in filtering to match contained text
+        list = autocompleteManager.updateListMatchAny(autocompleteField.text)
+    }
+    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+}
+
+```
+
+## Sample closure match method - updates autocomplete list of table view
+
+```Swift
+
+@IBAction func editingDidChange(sender: UITextField) {
+    let autocompleteField: UITextField = sender
+    if !autocompleteField.text.isEmpty {
+
+        // Use a closure to pass a filter that must match the prefix or the suffix
+        list = autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(autocompleteField.text.lowercaseString) || $0.lowercaseString.hasSuffix(autocompleteField.text.lowercaseString) })
+    }
+    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+}
 
 ```
 
