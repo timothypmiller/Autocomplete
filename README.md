@@ -11,12 +11,11 @@ _A simple autocomplete class written in Swift_
 
 ## Why should I use it?
 
-- Simple to use
-- Fast
-- A single class
+- An autocomplete class that is simple to use and fast.
 
-## Sample prefix match method - updates autocomplete list of table view
+## Prefix match
 
+- Will items that begin with text
 
 ```Swift
 
@@ -32,7 +31,9 @@ _A simple autocomplete class written in Swift_
 
 ```
 
-## Sample range match method - updates autocomplete list of table view
+## Range match 
+
+- Will match items that contain the text
 
 ```Swift
 
@@ -48,7 +49,9 @@ _A simple autocomplete class written in Swift_
 
 ```
 
-## Sample closure match method - updates autocomplete list of table view
+## Closure match
+
+- Will match items based on custom closure
 
 ```Swift
 
