@@ -15,7 +15,7 @@ _A simple autocomplete class written in Swift_
 
 ## Prefix match
 
-- Will items that begin with text
+- Will match items that begin with text
 
 ```Swift
 
@@ -51,7 +51,7 @@ _A simple autocomplete class written in Swift_
 
 ## Closure match
 
-- Will match items based on custom closure
+- Will match items based on a custom closure
 
 ```Swift
 
