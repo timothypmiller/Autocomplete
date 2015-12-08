@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFieldDelegate {
+class CitiesViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var clearButtonItem: UIBarButtonItem?
     
     let autocompleteManager: AutocompleteManager
@@ -29,7 +29,7 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
         listTitle = "Recents"
         searchString = ""
 
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
 
     override func viewDidLoad() {
@@ -69,18 +69,18 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var section = indexPath.section
-        var row = indexPath.row
+        let section = indexPath.section
+        let row = indexPath.row
         
         if section == 0 && row == 0 {
             let reuseIdentifier = "SearchCell"
-            var cell: SearchTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SearchTableViewCell
+            let cell: SearchTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SearchTableViewCell
             cell.searchTextField.delegate = self
 
             return cell
         } else if section == 1 {
             let reuseIdentifier = "NameCell"
-            var cell: NameTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! NameTableViewCell
+            let cell: NameTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! NameTableViewCell
             if let name = list?[indexPath.row] {
                 cell.nameLabel.text = name
             }
@@ -95,7 +95,7 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
             if let newSearchString = list?[indexPath.row] {
                 searchString = newSearchString
                 autocompleteManager.addToRecents(searchString!)
-                println("Number of recents: \(autocompleteManager.recentsList.count)")
+                print("Number of recents: \(autocompleteManager.recentsList.count)")
                 self.performSegueWithIdentifier("CitiesWebSearch", sender: self)
             }
         }
@@ -129,7 +129,7 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
     @IBAction func editingDidChange(sender: UITextField) {
         listTitle = "Recents"
         let autocompleteField: UITextField = sender
-        if autocompleteField.text.isEmpty {
+        if autocompleteField.text!.isEmpty {
             list = autocompleteManager.recentsListSorted
             if !list!.isEmpty {
                 clearButtonItem?.enabled = true
@@ -142,7 +142,7 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
             clearButtonItem?.title = ""
             
             // Use the built in filtering to match starting text
-            list = autocompleteManager.updateListMatchPrefix(autocompleteField.text)
+            list = autocompleteManager.updateListMatchPrefix(autocompleteField.text!)
             
             // May also pass your own filter as a closure
 //            list = autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(autocompleteField.text.lowercaseString) })
@@ -161,8 +161,8 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        println("Searching for: \(searchString)")
-        var webViewController = segue.destinationViewController as! WebViewController
+        print("Searching for: \(searchString)")
+        let webViewController = segue.destinationViewController as! WebViewController
         
         let searchComponents = searchString!.componentsSeparatedByString(",")
         
@@ -170,15 +170,15 @@ class CitiesViewController: UITableViewController, UITableViewDelegate, UITextFi
         let country = searchComponents[1].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         // Format for Wikipedia and encode
-        let urlString = "http://en.wikipedia.org/wiki/"
-        var urlPath = urlString + city + ",_" + country
-        urlPath = urlPath.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        let urlString = "https://en.wikipedia.org/wiki/"
+        var urlPath = urlString + city + ",_" + country        
+        urlPath = urlPath.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         
         webViewController.urlPath = urlPath
     }
     
     @IBAction func clearRecents(sender: AnyObject) {
-        println("Clear recents")
+        print("Clear recents")
         autocompleteManager.clearRecents()
         list = autocompleteManager.recentsListSorted
         clearButtonItem!.enabled = false

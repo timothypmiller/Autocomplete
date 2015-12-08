@@ -188,6 +188,8 @@
 		C20025D81A9570E60037A638 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Timothy P Miller";
 				TargetAttributes = {

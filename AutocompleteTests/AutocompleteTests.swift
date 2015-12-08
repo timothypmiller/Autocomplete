@@ -33,7 +33,7 @@ class AutocompleteProjectTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
             for string in self.alphabetStringArray {
-                var list: Array<String> = self.autocompleteManager.updateListMatchPrefix(string)
+                _ = self.autocompleteManager.updateListMatchPrefix(string)
             }
         }
     }
@@ -42,7 +42,7 @@ class AutocompleteProjectTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
             for string in self.negativeStringArray {
-                var list: Array<String> = self.autocompleteManager.updateListMatchPrefix(string)
+                _ = self.autocompleteManager.updateListMatchPrefix(string)
             }
         }
     }
@@ -51,7 +51,7 @@ class AutocompleteProjectTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
             for string in self.positiveStringArray {
-                var list: Array<String> = self.autocompleteManager.updateListMatchPrefix(string)
+                _ = self.autocompleteManager.updateListMatchPrefix(string)
             }
         }
     }
@@ -60,7 +60,7 @@ class AutocompleteProjectTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
             for string in self.alphabetStringArray {
-                var list: Array<String> = self.autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(string.lowercaseString) })
+                _ = self.autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(string.lowercaseString) })
             }
         }
     }

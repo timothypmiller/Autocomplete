@@ -28,7 +28,7 @@ public class IconsStyleKit : NSObject {
     public class func drawCanvas2() {
 
         //// Bezier Drawing
-        var bezierPath = UIBezierPath()
+        let bezierPath = UIBezierPath()
         bezierPath.moveToPoint(CGPointMake(0.5, 27.5))
         bezierPath.addLineToPoint(CGPointMake(5.5, 27.5))
         bezierPath.addLineToPoint(CGPointMake(5.5, 18.5))
@@ -54,7 +54,7 @@ public class IconsStyleKit : NSObject {
     public class func drawCanvas4() {
 
         //// Bezier 2 Drawing
-        var bezier2Path = UIBezierPath()
+        let bezier2Path = UIBezierPath()
         bezier2Path.moveToPoint(CGPointMake(0.5, 2.5))
         bezier2Path.addCurveToPoint(CGPointMake(33.5, 2.5), controlPoint1: CGPointMake(33.5, 2.5), controlPoint2: CGPointMake(33.5, 2.5))
         UIColor.blackColor().setStroke()
@@ -63,7 +63,7 @@ public class IconsStyleKit : NSObject {
 
 
         //// Bezier Drawing
-        var bezierPath = UIBezierPath()
+        let bezierPath = UIBezierPath()
         bezierPath.moveToPoint(CGPointMake(0.5, 31.5))
         bezierPath.addCurveToPoint(CGPointMake(33.5, 31.5), controlPoint1: CGPointMake(33.5, 31.5), controlPoint2: CGPointMake(33.5, 31.5))
         UIColor.blackColor().setStroke()
@@ -73,21 +73,21 @@ public class IconsStyleKit : NSObject {
 
         //// Group
         //// Oval Drawing
-        var ovalPath = UIBezierPath(ovalInRect: CGRectMake(15.5, 4.5, 18, 25))
+        let ovalPath = UIBezierPath(ovalInRect: CGRectMake(15.5, 4.5, 18, 25))
         UIColor.blackColor().setStroke()
         ovalPath.lineWidth = 1
         ovalPath.stroke()
 
 
         //// Oval 2 Drawing
-        var oval2Path = UIBezierPath(ovalInRect: CGRectMake(20.5, 8.5, 8, 10))
+        let oval2Path = UIBezierPath(ovalInRect: CGRectMake(20.5, 8.5, 8, 10))
         UIColor.blackColor().setStroke()
         oval2Path.lineWidth = 1
         oval2Path.stroke()
 
 
         //// Bezier 3 Drawing
-        var bezier3Path = UIBezierPath()
+        let bezier3Path = UIBezierPath()
         bezier3Path.moveToPoint(CGPointMake(21.93, 17.66))
         bezier3Path.addCurveToPoint(CGPointMake(16.79, 22.92), controlPoint1: CGPointMake(16.79, 22.92), controlPoint2: CGPointMake(16.79, 22.92))
         UIColor.blackColor().setStroke()
@@ -96,7 +96,7 @@ public class IconsStyleKit : NSObject {
 
 
         //// Bezier 4 Drawing
-        var bezier4Path = UIBezierPath()
+        let bezier4Path = UIBezierPath()
         bezier4Path.moveToPoint(CGPointMake(28.36, 18.97))
         bezier4Path.addCurveToPoint(CGPointMake(30.93, 24.24), controlPoint1: CGPointMake(30.93, 24.24), controlPoint2: CGPointMake(30.93, 24.24))
         UIColor.blackColor().setStroke()
@@ -107,7 +107,7 @@ public class IconsStyleKit : NSObject {
 
 
         //// Star Drawing
-        var starPath = UIBezierPath()
+        let starPath = UIBezierPath()
         starPath.moveToPoint(CGPointMake(5.5, 13.25))
         starPath.addLineToPoint(CGPointMake(7.35, 15.95))
         starPath.addLineToPoint(CGPointMake(10.49, 16.88))
