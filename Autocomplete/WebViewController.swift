@@ -22,22 +22,22 @@ class WebViewController: UIViewController, UIWebViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail load with error \(error)");
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true;
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         indicatorView.startAnimating()
-        indicatorView.hidden = false
+        indicatorView.isHidden = false
         print("Webview did start loading")
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
-        indicatorView.hidden = true
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        indicatorView.isHidden = true
         indicatorView.stopAnimating()
         print("Webview did finish loading")
     }
@@ -47,8 +47,8 @@ class WebViewController: UIViewController, UIWebViewDelegate {
             print("URL: \(url)")
 
             webView.delegate = self
-            if let url = NSURL(string: url) {
-                let request = NSURLRequest(URL: url);
+            if let url = URL(string: url) {
+                let request = URLRequest(url: url);
                 webView.loadRequest(request)
             }
         }

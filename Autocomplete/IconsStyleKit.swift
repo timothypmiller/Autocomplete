@@ -12,11 +12,11 @@
 
 import UIKit
 
-public class IconsStyleKit : NSObject {
+open class IconsStyleKit : NSObject {
 
     //// Cache
 
-    private struct Cache {
+    fileprivate struct Cache {
         static var imageOfCanvas2: UIImage?
         static var canvas2Targets: [AnyObject]?
         static var imageOfCanvas4: UIImage?
@@ -25,81 +25,81 @@ public class IconsStyleKit : NSObject {
 
     //// Drawing Methods
 
-    public class func drawCanvas2() {
+    open class func drawCanvas2() {
 
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
-        bezierPath.moveToPoint(CGPointMake(0.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(5.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(5.5, 18.5))
-        bezierPath.addLineToPoint(CGPointMake(9.5, 18.5))
-        bezierPath.addLineToPoint(CGPointMake(9.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(9.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(9.5, 6.5))
-        bezierPath.addLineToPoint(CGPointMake(14.5, 6.5))
-        bezierPath.addLineToPoint(CGPointMake(14.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(20.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(20.5, 12.5))
-        bezierPath.addLineToPoint(CGPointMake(24.5, 12.5))
-        bezierPath.addLineToPoint(CGPointMake(24.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(27.5, 4.5))
-        bezierPath.addLineToPoint(CGPointMake(29.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(34.5, 27.5))
-        bezierPath.addLineToPoint(CGPointMake(34.5, 27.5))
-        UIColor.blackColor().setStroke()
+        bezierPath.move(to: CGPoint(x: 0.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 5.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 5.5, y: 18.5))
+        bezierPath.addLine(to: CGPoint(x: 9.5, y: 18.5))
+        bezierPath.addLine(to: CGPoint(x: 9.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 9.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 9.5, y: 6.5))
+        bezierPath.addLine(to: CGPoint(x: 14.5, y: 6.5))
+        bezierPath.addLine(to: CGPoint(x: 14.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 20.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 20.5, y: 12.5))
+        bezierPath.addLine(to: CGPoint(x: 24.5, y: 12.5))
+        bezierPath.addLine(to: CGPoint(x: 24.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 27.5, y: 4.5))
+        bezierPath.addLine(to: CGPoint(x: 29.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 34.5, y: 27.5))
+        bezierPath.addLine(to: CGPoint(x: 34.5, y: 27.5))
+        UIColor.black.setStroke()
         bezierPath.lineWidth = 1
         bezierPath.stroke()
     }
 
-    public class func drawCanvas4() {
+    open class func drawCanvas4() {
 
         //// Bezier 2 Drawing
         let bezier2Path = UIBezierPath()
-        bezier2Path.moveToPoint(CGPointMake(0.5, 2.5))
-        bezier2Path.addCurveToPoint(CGPointMake(33.5, 2.5), controlPoint1: CGPointMake(33.5, 2.5), controlPoint2: CGPointMake(33.5, 2.5))
-        UIColor.blackColor().setStroke()
+        bezier2Path.move(to: CGPoint(x: 0.5, y: 2.5))
+        bezier2Path.addCurve(to: CGPoint(x: 33.5, y: 2.5), controlPoint1: CGPoint(x: 33.5, y: 2.5), controlPoint2: CGPoint(x: 33.5, y: 2.5))
+        UIColor.black.setStroke()
         bezier2Path.lineWidth = 1
         bezier2Path.stroke()
 
 
         //// Bezier Drawing
         let bezierPath = UIBezierPath()
-        bezierPath.moveToPoint(CGPointMake(0.5, 31.5))
-        bezierPath.addCurveToPoint(CGPointMake(33.5, 31.5), controlPoint1: CGPointMake(33.5, 31.5), controlPoint2: CGPointMake(33.5, 31.5))
-        UIColor.blackColor().setStroke()
+        bezierPath.move(to: CGPoint(x: 0.5, y: 31.5))
+        bezierPath.addCurve(to: CGPoint(x: 33.5, y: 31.5), controlPoint1: CGPoint(x: 33.5, y: 31.5), controlPoint2: CGPoint(x: 33.5, y: 31.5))
+        UIColor.black.setStroke()
         bezierPath.lineWidth = 1
         bezierPath.stroke()
 
 
         //// Group
         //// Oval Drawing
-        let ovalPath = UIBezierPath(ovalInRect: CGRectMake(15.5, 4.5, 18, 25))
-        UIColor.blackColor().setStroke()
+        let ovalPath = UIBezierPath(ovalIn: CGRect(x: 15.5, y: 4.5, width: 18, height: 25))
+        UIColor.black.setStroke()
         ovalPath.lineWidth = 1
         ovalPath.stroke()
 
 
         //// Oval 2 Drawing
-        let oval2Path = UIBezierPath(ovalInRect: CGRectMake(20.5, 8.5, 8, 10))
-        UIColor.blackColor().setStroke()
+        let oval2Path = UIBezierPath(ovalIn: CGRect(x: 20.5, y: 8.5, width: 8, height: 10))
+        UIColor.black.setStroke()
         oval2Path.lineWidth = 1
         oval2Path.stroke()
 
 
         //// Bezier 3 Drawing
         let bezier3Path = UIBezierPath()
-        bezier3Path.moveToPoint(CGPointMake(21.93, 17.66))
-        bezier3Path.addCurveToPoint(CGPointMake(16.79, 22.92), controlPoint1: CGPointMake(16.79, 22.92), controlPoint2: CGPointMake(16.79, 22.92))
-        UIColor.blackColor().setStroke()
+        bezier3Path.move(to: CGPoint(x: 21.93, y: 17.66))
+        bezier3Path.addCurve(to: CGPoint(x: 16.79, y: 22.92), controlPoint1: CGPoint(x: 16.79, y: 22.92), controlPoint2: CGPoint(x: 16.79, y: 22.92))
+        UIColor.black.setStroke()
         bezier3Path.lineWidth = 1
         bezier3Path.stroke()
 
 
         //// Bezier 4 Drawing
         let bezier4Path = UIBezierPath()
-        bezier4Path.moveToPoint(CGPointMake(28.36, 18.97))
-        bezier4Path.addCurveToPoint(CGPointMake(30.93, 24.24), controlPoint1: CGPointMake(30.93, 24.24), controlPoint2: CGPointMake(30.93, 24.24))
-        UIColor.blackColor().setStroke()
+        bezier4Path.move(to: CGPoint(x: 28.36, y: 18.97))
+        bezier4Path.addCurve(to: CGPoint(x: 30.93, y: 24.24), controlPoint1: CGPoint(x: 30.93, y: 24.24), controlPoint2: CGPoint(x: 30.93, y: 24.24))
+        UIColor.black.setStroke()
         bezier4Path.lineWidth = 1
         bezier4Path.stroke()
 
@@ -108,30 +108,30 @@ public class IconsStyleKit : NSObject {
 
         //// Star Drawing
         let starPath = UIBezierPath()
-        starPath.moveToPoint(CGPointMake(5.5, 13.25))
-        starPath.addLineToPoint(CGPointMake(7.35, 15.95))
-        starPath.addLineToPoint(CGPointMake(10.49, 16.88))
-        starPath.addLineToPoint(CGPointMake(8.5, 19.47))
-        starPath.addLineToPoint(CGPointMake(8.59, 22.75))
-        starPath.addLineToPoint(CGPointMake(5.5, 21.65))
-        starPath.addLineToPoint(CGPointMake(2.41, 22.75))
-        starPath.addLineToPoint(CGPointMake(2.5, 19.47))
-        starPath.addLineToPoint(CGPointMake(0.51, 16.88))
-        starPath.addLineToPoint(CGPointMake(3.65, 15.95))
-        starPath.closePath()
-        UIColor.blackColor().setStroke()
+        starPath.move(to: CGPoint(x: 5.5, y: 13.25))
+        starPath.addLine(to: CGPoint(x: 7.35, y: 15.95))
+        starPath.addLine(to: CGPoint(x: 10.49, y: 16.88))
+        starPath.addLine(to: CGPoint(x: 8.5, y: 19.47))
+        starPath.addLine(to: CGPoint(x: 8.59, y: 22.75))
+        starPath.addLine(to: CGPoint(x: 5.5, y: 21.65))
+        starPath.addLine(to: CGPoint(x: 2.41, y: 22.75))
+        starPath.addLine(to: CGPoint(x: 2.5, y: 19.47))
+        starPath.addLine(to: CGPoint(x: 0.51, y: 16.88))
+        starPath.addLine(to: CGPoint(x: 3.65, y: 15.95))
+        starPath.close()
+        UIColor.black.setStroke()
         starPath.lineWidth = 1
         starPath.stroke()
     }
 
     //// Generated Images
 
-    public class var imageOfCanvas2: UIImage {
+    open class var imageOfCanvas2: UIImage {
         if Cache.imageOfCanvas2 != nil {
             return Cache.imageOfCanvas2!
         }
 
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(34, 34), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 34, height: 34), false, 0)
             IconsStyleKit.drawCanvas2()
 
         Cache.imageOfCanvas2 = UIGraphicsGetImageFromCurrentImageContext()!
@@ -140,12 +140,12 @@ public class IconsStyleKit : NSObject {
         return Cache.imageOfCanvas2!
     }
 
-    public class var imageOfCanvas4: UIImage {
+    open class var imageOfCanvas4: UIImage {
         if Cache.imageOfCanvas4 != nil {
             return Cache.imageOfCanvas4!
         }
 
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(34, 34), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: 34, height: 34), false, 0)
             IconsStyleKit.drawCanvas4()
 
         Cache.imageOfCanvas4 = UIGraphicsGetImageFromCurrentImageContext()!
@@ -179,9 +179,9 @@ public class IconsStyleKit : NSObject {
 }
 
 @objc protocol StyleKitSettableImage {
-    func setImage(image: UIImage!)
+    func setImage(_ image: UIImage!)
 }
 
 @objc protocol StyleKitSettableSelectedImage {
-    func setSelectedImage(image: UIImage!)
+    func setSelectedImage(_ image: UIImage!)
 }

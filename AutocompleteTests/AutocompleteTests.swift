@@ -30,7 +30,7 @@ class AutocompleteProjectTests: XCTestCase {
     }
     
     func testPerformanceArray() {
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
             for string in self.alphabetStringArray {
                 _ = self.autocompleteManager.updateListMatchPrefix(string)
@@ -39,7 +39,7 @@ class AutocompleteProjectTests: XCTestCase {
     }
     
     func testPerformanceNegativeStringArray() {
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
             for string in self.negativeStringArray {
                 _ = self.autocompleteManager.updateListMatchPrefix(string)
@@ -48,7 +48,7 @@ class AutocompleteProjectTests: XCTestCase {
     }
 
     func testPerformancePositiveStringArray() {
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
             for string in self.positiveStringArray {
                 _ = self.autocompleteManager.updateListMatchPrefix(string)
@@ -57,10 +57,10 @@ class AutocompleteProjectTests: XCTestCase {
     }
 
     func testPerformanceArrayWithClosure() {
-        self.measureBlock() {
+        self.measure() {
             // Put the code you want to measure the time of here.
             for string in self.alphabetStringArray {
-                _ = self.autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(string.lowercaseString) })
+                _ = self.autocompleteManager.updateList({ $0.lowercased().hasPrefix(string.lowercased()) })
             }
         }
     }

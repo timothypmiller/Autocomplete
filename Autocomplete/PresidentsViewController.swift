@@ -35,25 +35,25 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "President Finder"
-        clearButtonItem?.enabled = false
+        clearButtonItem?.isEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
+    override func numberOfSections(in tableView: UITableView?) -> Int {
         return 2
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 1 {
             return listTitle
         }
         return ""
     }
     
-    override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else if section == 1 {
@@ -64,23 +64,23 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
         return 0
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
         
         if section == 0 && row == 0 {
             let reuseIdentifier = "SearchCell"
-            let cell: SearchTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! SearchTableViewCell
+            let cell: SearchTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SearchTableViewCell
             cell.searchTextField.delegate = self
 
             return cell
         } else if section == 1 {
             let reuseIdentifier = "NameCell"
-            let cell: NameTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! NameTableViewCell
+            let cell: NameTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! NameTableViewCell
             if let name = list?[indexPath.row] {
                 cell.nameLabel.text = name
             }
@@ -90,18 +90,18 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
         return UITableViewCell()
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if let newSearchString = list?[indexPath.row] {
                 searchString = newSearchString
                 autocompleteManager.addToRecents(searchString!)
                 print("Number of recents: \(autocompleteManager.recentsList.count)")
-                self.performSegueWithIdentifier("PresidentsWebSearch", sender: self)
+                self.performSegue(withIdentifier: "PresidentsWebSearch", sender: self)
             }
         }
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 1 {
             if autocompleteManager.recentsList == list! {
                 return true
@@ -110,15 +110,15 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
         return false
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            if editingStyle == UITableViewCellEditingStyle.Delete {
+            if editingStyle == UITableViewCellEditingStyle.delete {
                 if autocompleteManager.recentsList == list! {
                     autocompleteManager.removeRecent(indexPath.row)
                     list = autocompleteManager.recentsListSorted
-                    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+                    self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
                     if list!.isEmpty {
-                        clearButtonItem?.enabled = false
+                        clearButtonItem?.isEnabled = false
                         clearButtonItem?.title = "Clear"
                     }
                 }
@@ -126,18 +126,18 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func editingDidChange(sender: UITextField) {
+    @IBAction func editingDidChange(_ sender: UITextField) {
         listTitle = "Recents"
         let autocompleteField: UITextField = sender
         if autocompleteField.text!.isEmpty {
             list = autocompleteManager.recentsListSorted
             if !list!.isEmpty {
-                clearButtonItem?.enabled = true
+                clearButtonItem?.isEnabled = true
                 clearButtonItem?.title = "Clear"
             }
         } else {
             listTitle = "Presidents"
-            clearButtonItem?.enabled = false
+            clearButtonItem?.isEnabled = false
             // There is no hidden property for this type of button
             clearButtonItem?.title = ""
             
@@ -148,24 +148,24 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
 //            list = autocompleteManager.updateList({ $0.lowercaseString.hasPrefix(autocompleteField.text.lowercaseString) || $0.lowercaseString.hasSuffix(autocompleteField.text.lowercaseString)})
 
         }
-        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let newSearchString: String = list?.first {
             searchString = newSearchString
             autocompleteManager.addToRecents(searchString!)
             
-            self.performSegueWithIdentifier("PresidentsWebSearch", sender: self)
+            self.performSegue(withIdentifier: "PresidentsWebSearch", sender: self)
         }
         return true
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Searching for: \(searchString)")
-        let webViewController = segue.destinationViewController as! WebViewController
+        let webViewController = segue.destination as! WebViewController
         
-        let searchComponents = searchString!.componentsSeparatedByString(" ")
+        let searchComponents = searchString!.components(separatedBy: " ")
         
         var fullName: String = String()
         for name in searchComponents {
@@ -173,23 +173,23 @@ class PresidentsViewController: UITableViewController, UITextFieldDelegate {
             fullName += name
         }
         
-        fullName = fullName.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        fullName = fullName.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         print("\(fullName)")
         
         // Format for Wikipedia and encode
         let urlString = "https://en.wikipedia.org/wiki/"
         var urlPath = urlString + fullName
-        urlPath = urlPath.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        urlPath = urlPath.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         webViewController.urlPath = urlPath
     }
     
-    @IBAction func clearRecents(sender: AnyObject) {
+    @IBAction func clearRecents(_ sender: AnyObject) {
         print("Clear recents")
         autocompleteManager.clearRecents()
         list = autocompleteManager.recentsListSorted
-        clearButtonItem!.enabled = false
-        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: UITableViewRowAnimation.Fade)
+        clearButtonItem!.isEnabled = false
+        self.tableView.reloadSections(IndexSet(integer: 1), with: UITableViewRowAnimation.fade)
     }
 }
 
