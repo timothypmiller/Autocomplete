@@ -2,7 +2,7 @@
 
 _A simple autocomplete class written in Swift_
 
-This project has moved to https://gitlab.com/timothypmiller/autocomplete where is being maintained.
+This project has moved to https://gitlab.com/timothypmiller/autocomplete where it is being maintained.
 
 ## What can it do?
 
